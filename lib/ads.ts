@@ -12,8 +12,34 @@ export type AdDTO = {
     userId: string;
 };
 
-export async function getAds(): Promise<AdDTO[]> {
+export type AdFilters = {
+    query?: string;
+    maxPrice?: number;
+    tag?: string;
+};
+
+export async function getAds(filters: AdFilters = {}): Promise<AdDTO[]> {
+    const { query, maxPrice, tag } = filters;
+
     const ads = await prisma.ad.findMany({
+        where: {
+            ...(query && {
+                title: {
+                    contains: query,
+                    mode: "insensitive" as const,
+                },
+            }),
+            ...(maxPrice && {
+                price: {
+                    lte: maxPrice,
+                },
+            }),
+            ...(tag && {
+                tags: {
+                    has: tag,
+                },
+            }),
+        },
         orderBy: { createdAt: "desc" },
         select: {
             id: true,

@@ -1,8 +1,23 @@
 import { getAds } from "@/lib/ads";
 import AdCard from "@/components/AdCard";
+import SearchFilters from "@/components/SearchFilters";
 
-export default async function HomePage() {
-  const ads = await getAds();
+type HomePageProps = {
+  searchParams: Promise<{
+    query?: string;
+    price?: string;
+    tag?: string;
+  }>;
+};
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const { query, price, tag } = await searchParams;
+
+  const ads = await getAds({
+    query,
+    maxPrice: price ? Number(price) : undefined,
+    tag,
+  });
 
   return (
     <main className="min-h-screen p-8 max-w-6xl mx-auto">
@@ -10,6 +25,8 @@ export default async function HomePage() {
       <p className="mt-2 text-gray-600">
         Compra y vende artículos de segunda mano
       </p>
+
+      <SearchFilters />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         {ads.map((ad) => (
@@ -28,7 +45,7 @@ export default async function HomePage() {
 
       {ads.length === 0 && (
         <p className="text-gray-500 text-center mt-12">
-          No hay anuncios disponibles
+          No se encontraron anuncios con esos filtros
         </p>
       )}
     </main>
