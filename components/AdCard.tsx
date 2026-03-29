@@ -1,3 +1,4 @@
+import HeartIcon from "./HeartIcon";
 import Link from "next/link";
 
 type AdCardProps = {
@@ -45,7 +46,9 @@ export default function AdCard({
                             </span>
                         ))}
                     </div>
-                    <p className="text-gray-400 text-xs mt-3">❤️ {likes}</p>
+                    <span className="inline-flex items-center gap-1">
+                        <HeartIcon className="w-4 h-4 text-red-500" /> {likes}
+                    </span>
                 </div>
             </article>
         </Link>

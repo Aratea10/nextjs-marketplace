@@ -56,3 +56,32 @@ export async function getAds(filters: AdFilters = {}): Promise<AdDTO[]> {
 
     return ads;
 }
+
+export async function getAdById(id: number) {
+    const ad = await prisma.ad.findUnique({
+        where: { id },
+        select: {
+            id: true,
+            title: true,
+            description: true,
+            price: true,
+            tags: true,
+            imageUrl: true,
+            likes: true,
+            createdAt: true,
+            userId: true,
+            user: {
+                select: {
+                    displayName: true,
+                },
+            },
+        },
+    });
+
+    if (!ad) return null;
+
+    return {
+        ...ad,
+        userName: ad.user.displayName,
+    };
+}
