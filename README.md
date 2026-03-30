@@ -52,7 +52,7 @@ El principal requisito técnico de la práctica es el uso de **Next.js App Route
 
 ### Testing
 
-**7 test unitarios** del schema de validación de anuncios con Vitest, cubriendo: datos válidos, título corto, precio inválido, campos opcionales y URL inválida.
+**6 test unitarios** de la Server Action `createAdAction`con Vitest, cubriendo: creación válida con redirect, título corto, descripción corta, precio vacío, usuario no autenticado y creación sin campos opcionales.
 
 ### Reglas de Negocio
 
