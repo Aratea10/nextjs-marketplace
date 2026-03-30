@@ -1,5 +1,5 @@
-import HeartIcon from "./HeartIcon";
 import Link from "next/link";
+import LikeButton from "./LikeButton";
 
 type AdCardProps = {
     id: number;
@@ -21,8 +21,8 @@ export default function AdCard({
     likes,
 }: AdCardProps) {
     return (
-        <Link href={`/ads/${id}`}>
-            <article className="rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+        <article className="rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+            <Link href={`/ads/${id}`}>
                 {imageUrl && (
                     <img
                         src={imageUrl}
@@ -46,11 +46,11 @@ export default function AdCard({
                             </span>
                         ))}
                     </div>
-                    <span className="inline-flex items-center gap-1">
-                        <HeartIcon className="w-4 h-4 text-red-500" /> {likes}
-                    </span>
                 </div>
-            </article>
-        </Link>
+            </Link>
+            <div className="px-4 pb-3">
+                <LikeButton adId={id} likes={likes} />
+            </div>
+        </article>
     );
 }
