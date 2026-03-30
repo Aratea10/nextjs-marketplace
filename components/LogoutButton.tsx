@@ -7,15 +7,14 @@ export default function LogoutButton() {
 
     const handleLogout = async () => {
         await fetch("/api/logout", { method: "POST" });
-        router.refresh();
     };
 
     return (
         <button
             onClick={handleLogout}
-            className="text-sm text-gray-500 hover:text-red-500 transition-colors"
+            className="text-sm text-gray-400 hover:text-red-500 transition-colors font-medium"
         >
-            Salir
+            Cerrar sesión
         </button>
     );
 }

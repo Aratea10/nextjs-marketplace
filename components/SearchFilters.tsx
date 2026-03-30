@@ -40,14 +40,14 @@ export default function SearchFilters() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-wrap gap-3 mt-6">
+        <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-3 mt-4">
             <input
                 type="text"
                 name="query"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Buscar por nombre..."
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm flex-1 min-w-[180px]"
+                className="flex-1 min-w-[180px] px-4 py-1.5 rounded-xl border border-gray-200 bg-gray-50 outline-none text-sm transition-all focus:border-[#13c1ac] focus:ring-2 focus:ring-[#13c1ac]/20 focus:bg-white"
             />
 
             <input
@@ -57,14 +57,14 @@ export default function SearchFilters() {
                 onChange={(e) => setMaxPrice(e.target.value)}
                 placeholder="Precio máximo"
                 min="0"
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm w-36"
+                className="w-40 px-4 py-1.5 rounded-xl border border-gray-200 bg-gray-50 outline-none text-sm transition-all focus:border-[#13c1ac] focus:ring-2 focus:ring-[#13c1ac]/20 focus:bg-white"
             />
 
             <select
                 name="tag"
                 value={tag}
                 onChange={(e) => setTag(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
+                className="px-4 py-1.5 rounded-xl border border-gray-200 bg-gray-50 outline-none text-sm transition-all focus:border-[#13c1ac] focus:ring-2 focus:ring-[#13c1ac]/20 focus:bg-white"
             >
                 <option value="">Todas las categorías</option>
                 <option value="tecnología">Tecnología</option>
@@ -77,7 +77,7 @@ export default function SearchFilters() {
 
             <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors"
+                className="bg-brand text-white px-5 py-1.5 rounded-full text-sm font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
             >
                 Buscar
             </button>
@@ -85,7 +85,7 @@ export default function SearchFilters() {
             <button
                 type="button"
                 onClick={handleClear}
-                className="border border-gray-300 px-4 py-2 rounded-lg text-sm hover:bg-gray-50 transition-colors"
+                className="border border-gray-200 px-5 py-1.5 rounded-full text-sm text-gray-500 hover:bg-gray-50 transition-all"
             >
                 Limpiar
             </button>

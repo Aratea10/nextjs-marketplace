@@ -36,55 +36,65 @@ export default async function AdDetailPage({ params }: AdDetailProps) {
         <main className="min-h-screen p-8 max-w-4xl mx-auto">
             <Link
                 href="/"
-                className="text-blue-600 hover:underline text-sm"
+                className="text-brand hover:underline text-sm font-medium"
             >
-                ← Volver a la lista
+                ← Volver al listado
             </Link>
 
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {ad.imageUrl && (
-                    <img
-                        src={ad.imageUrl}
-                        alt={ad.title}
-                        className="w-full rounded-lg object-cover"
-                    />
-                )}
+            <div className="mt-6 card-container">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {ad.imageUrl ? (
+                        <img
+                            src={ad.imageUrl}
+                            alt={ad.title}
+                            className="w-full rounded-2xl object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-64 bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400">
+                            Sin imagen
+                        </div>
+                    )}
 
-                <div>
-                    <h1 className="text-3xl font-bold">{ad.title}</h1>
-                    <p className="text-4xl font-bold text-green-600 mt-2">
-                        {ad.price} €
-                    </p>
+                    <div>
+                        <h1 className="text-2xl font-bold text-gray-800">{ad.title}</h1>
+                        <p className="text-3xl font-bold text-brand mt-2">{ad.price} €</p>
 
-                    <div className="flex flex-wrap gap-1 mt-4">
-                        {ad.tags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full"
-                            >
-                                {tag}
-                            </span>
-                        ))}
+                        <div className="flex flex-wrap gap-1.5 mt-4">
+                            {ad.tags.map((tag) => (
+                                <span
+                                    key={tag}
+                                    className="text-brand bg-emerald-50 text-sm px-3 py-1 rounded-full font-medium"
+                                >
+                                    #{tag}
+                                </span>
+                            ))}
+                        </div>
+
+                        <p className="text-gray-500 mt-6 leading-relaxed">
+                            {ad.description}
+                        </p>
+
+                        <div className="mt-6 pt-4 border-t border-gray-100">
+                            <p className="text-gray-400 text-sm">
+                                Vendido por{" "}
+                                <span className="font-semibold text-gray-600">
+                                    {ad.userName}
+                                </span>
+                            </p>
+                            <p className="text-gray-400 text-xs mt-1">
+                                Publicado el{" "}
+                                {new Date(ad.createdAt).toLocaleDateString("es-ES", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                })}
+                            </p>
+                        </div>
+
+                        <div className="mt-4">
+                            <LikeButton adId={ad.id} likes={ad.likes} />
+                        </div>
                     </div>
-
-                    <p className="text-gray-600 mt-6 leading-relaxed">
-                        {ad.description}
-                    </p>
-
-                    <p className="text-gray-400 text-sm mt-6">
-                        <LikeButton adId={ad.id} likes={ad.likes} />
-                    </p>
-                    <p className="text-gray-500 text-sm mt-4">
-                        Vendido por <span className="font-semibold">{ad.userName}</span>
-                    </p>
-                    <p className="text-gray-400 text-xs mt-2">
-                        Publicado el{" "}
-                        {new Date(ad.createdAt).toLocaleDateString("es-ES", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                        })}
-                    </p>
                 </div>
             </div>
         </main>

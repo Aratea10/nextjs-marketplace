@@ -14,21 +14,23 @@ export default function LoginPage() {
 
     return (
         <main className="min-h-screen flex items-center justify-center p-8">
-            <div className="w-full max-w-md">
-                <h1 className="text-3xl font-bold text-center">Iniciar sesión</h1>
-                <p className="text-gray-500 text-center mt-2">
-                    Accede a tu cuenta de Marketplace
+            <div className="w-full max-w-md card-container">
+                <h1 className="logo-title text-3xl text-brand text-center">
+                    Marketplace
+                </h1>
+                <p className="text-gray-400 text-center mt-2">
+                    Bienvenido de nuevo
                 </p>
 
                 <form action={formAction} className="mt-8 space-y-4">
                     {state.message && (
-                        <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg">
+                        <div className="bg-red-50 text-red-600 text-sm p-3 rounded-xl">
                             {state.message}
                         </div>
                     )}
 
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-1">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">
                             Email
                         </label>
                         <input
@@ -36,7 +38,7 @@ export default function LoginPage() {
                             id="email"
                             name="email"
                             placeholder="tu@email.com"
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                            className="input-field"
                         />
                         {state.errors?.email && (
                             <p className="text-red-500 text-xs mt-1">{state.errors.email}</p>
@@ -46,7 +48,7 @@ export default function LoginPage() {
                     <div>
                         <label
                             htmlFor="password"
-                            className="block text-sm font-medium mb-1"
+                            className="block text-sm font-medium text-gray-600 mb-1"
                         >
                             Contraseña
                         </label>
@@ -55,7 +57,7 @@ export default function LoginPage() {
                             id="password"
                             name="password"
                             placeholder="••••••••"
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                            className="input-field"
                         />
                         {state.errors?.password && (
                             <p className="text-red-500 text-xs mt-1">
@@ -67,15 +69,15 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         disabled={isPending}
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                        className="btn-primary disabled:opacity-50"
                     >
-                        {isPending ? "Entrando..." : "Entrar"}
+                        {isPending ? "Entrando..." : "Iniciar sesión"}
                     </button>
                 </form>
 
-                <p className="text-center text-sm text-gray-500 mt-6">
-                    <Link href="/" className="text-blue-600 hover:underline">
-                        ← Volver a la lista
+                <p className="text-center text-sm text-gray-400 mt-6">
+                    <Link href="/" className="text-brand hover:underline">
+                        Volver al inicio
                     </Link>
                 </p>
             </div>

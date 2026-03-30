@@ -1,1 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap");
 @import "tailwindcss";
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.logo-title {
+    font-family: "Outfit", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.text-brand {
+    color: #13c1ac;
+}
+
+.bg-brand {
+    background-color: #13c1ac;
+}
+
+.bg-brand:hover {
+    background-color: #14b39e;
+}
+
+.border-brand {
+    border-color: #13c1ac;
+}
+
+.ring-brand {
+    --tw-ring-color: rgba(19, 193, 172, 0.2);
+}
+
+.btn-primary {
+    @apply w-full text-white font-bold py-3 px-4 rounded-full transition duration-200 shadow-md;
+    background-color: #13c1ac;
+}
+
+.btn-primary:hover {
+    @apply shadow-lg -translate-y-0.5;
+    background-color: #14b39e;
+}
+
+.input-field:focus {
+    @apply ring-2 bg-white;
+    border-color: #13c1ac;
+    --tw-ring-color: rgba(19, 193, 172, 0.2);
+}
+
+.card-container {
+    @apply bg-white p-8 rounded-3xl shadow-lg border border-gray-100;
+}
+
+.ad-card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200;
+}
+
+.ad-card:hover {
+    @apply shadow-lg -translate-y-1;
+}

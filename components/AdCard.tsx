@@ -21,34 +21,38 @@ export default function AdCard({
     likes,
 }: AdCardProps) {
     return (
-        <article className="rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+        <article className="ad-card">
             <Link href={`/ads/${id}`}>
-                {imageUrl && (
+                {imageUrl ? (
                     <img
                         src={imageUrl}
                         alt={title}
                         className="w-full h-48 object-cover"
                     />
+                ) : (
+                    <div className="w-full h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm">
+                        Sin imagen
+                    </div>
                 )}
                 <div className="p-4">
-                    <h2 className="text-lg font-semibold">{title}</h2>
-                    <p className="text-2xl font-bold text-green-600 mt-1">{price} €</p>
-                    <p className="text-gray-500 text-sm mt-2 line-clamp-2">
+                    <h2 className="text-base font-semibold text-gray-800">{title}</h2>
+                    <p className="text-xl font-bold text-brand mt-1">{price} €</p>
+                    <p className="text-gray-400 text-sm mt-2 line-clamp-2">
                         {description}
                     </p>
-                    <div className="flex flex-wrap gap-1 mt-3">
+                    <div className="flex flex-wrap gap-1.5 mt-3">
                         {tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full"
+                                className="text-brand bg-emerald-50 text-xs px-2.5 py-1 rounded-full font-medium"
                             >
-                                {tag}
+                                #{tag}
                             </span>
                         ))}
                     </div>
                 </div>
             </Link>
-            <div className="px-4 pb-3">
+            <div className="px-4 pb-4">
                 <LikeButton adId={id} likes={likes} />
             </div>
         </article>
