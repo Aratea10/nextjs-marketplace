@@ -2,7 +2,7 @@ import { getAdById } from "@/lib/ads";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import HeartIcon from "@/components/HeartIcon";
+import LikeButton from "@/components/LikeButton";
 
 type AdDetailProps = {
     params: Promise<{ id: string }>;
@@ -72,9 +72,7 @@ export default async function AdDetailPage({ params }: AdDetailProps) {
                     </p>
 
                     <p className="text-gray-400 text-sm mt-6">
-                        <span className="inline-flex items-center gap-1">
-                            <HeartIcon className="w-5 h-5 text-red-500" /> {ad.likes} me gusta
-                        </span>
+                        <LikeButton adId={ad.id} likes={ad.likes} />
                     </p>
                     <p className="text-gray-500 text-sm mt-4">
                         Vendido por <span className="font-semibold">{ad.userName}</span>
