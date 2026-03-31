@@ -206,4 +206,4 @@ Este proyecto se entrega con [**Licencia MIT**](https://github.com/Aratea10/next
 
 ## 👩‍💻 Autora
 
-**Sara Gallego Méndez** — Estudiante de Bootcamp de Desarrollo Web FullStack en [KeepCoding](https://keepcoding.io/).
+**Sara Gallego Méndez** — Estudiante del Bootcamp de Desarrollo Web FullStack en [KeepCoding](https://keepcoding.io/).
