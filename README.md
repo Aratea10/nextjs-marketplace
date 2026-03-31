@@ -1,4 +1,4 @@
-# Marketplace de Anuncios - Práctica React Avanzado
+# 🛒 Marketplace de Anuncios - Práctica React Avanzado
 
 <div align="center">
 
@@ -17,24 +17,39 @@ Este proyecto es una **aplicación web fullstack** de un marketplace de anuncios
 
 El principal requisito técnico de la práctica es el uso de **Next.js App Router** con **Server Components**, **Server Actions**, **Streaming UI** y **autenticación con JWT**, siguiendo las mejores prácticas de React 19 y Next.js 16.
 
+<div align="center">
+  <img src="docs/screenshot.png" alt="Marketplace screenshot" width="700" />
+</div>
+
+---
+
+## 🌐 Despliegue en producción 
+
+La aplicación está desplegada en [**http://35.170.15.75**](http://35.170.15.75)
+
+> Desplegada con Node.js v22, Supervisor, Nginx y PostgreSQL (Docker) en AWS EC2.
+> Ver [repositorio de configuración](https://github.com/Aratea10/devops-practice) para más detalles.
+
+---
+
 ## ✨ Características Implementadas
 
 ### Hito 1: Listado de Anuncios
 
 - **Server Components**: La página principal renderiza los anuncios directamente en el servidor, sin `useEffect` ni `fetch` en el cliente.
-- **Filtros vía URL**: Buscando por nombre, precio máximo y categoría (tag). La URL refleja los filtros aplicados (ej: `/?query=iphone&price=1000&tag=tecnoogía`).
-- **Loading UI (Streaming)**: Skeleton animado con `loading.tsx`que se muestra mientras el servidor obtiene los datos, evitando pantallas en blanco.
+- **Filtros vía URL**: Buscando por nombre, precio máximo y categoría (tag). La URL refleja los filtros aplicados (ej: `/?query=iphone&price=1000&tag=tecnología`).
+- **Loading UI (Streaming)**: Skeleton animado con `loading.tsx` que se muestra mientras el servidor obtiene los datos, evitando pantallas en blanco.
 
-### Hito 2: Detalle del ANuncio
+### Hito 2: Detalle del Anuncio
 
 - **Rutas dinámicas**: Cada anuncio tiene su propia página en `/ads/[id]`.
-- **SEO dinámico**: `generateMetadata`genera títulos y descripciones únicos por anuncio para mejorar el posicionamiento.
+- **SEO dinámico**: `generateMetadata` genera títulos y descripciones únicos por anuncio para mejorar el posicionamiento.
 - **Información del vendedor**: Se muestra el nombre del usuario que publicó el anuncio.
 
-### Nito 3: Autenticación y Mutaciones
+### Hito 3: Autenticación y Mutaciones
 
 - **Login con Server Actions**: Formulario de inicio de sesión validado con Zod y procesado en el servidor.
-- **JWT + Cookies HttpOnly**: Autenticación segura con tokens JWT almacenados en cookies `httOnly`, `secure`y `sameSite`.
+- **JWT + Cookies HttpOnly**: Autenticación segura con tokens JWT almacenados en cookies `httpOnly`, `secure` y `sameSite`.
 - **Crear anuncio con validación Zod**: Formulario con validación de campos (título, descripción, precio, tags, URL de imagen).
 - **`useActionState`**: Hook de React 19 para gestionar el estado del formulario y mostrar errores de validación por campo.
 - **`revalidatePath`**: Revalidación automática del listado tras crear un nuevo anuncio.
@@ -48,26 +63,26 @@ El principal requisito técnico de la práctica es el uso de **Next.js App Route
 
 - **Middleware de protección**: La ruta `/ads/create` está protegida. Si el usuario no está autenticado, se redirige automáticamente a `/login`.
 - **Optimistic UI**: Botón de "me gusta" con `useOptimistic` que actualiza el contador al instante sin esperar la respuesta del servidor.
-- **Separación Client/Server**: Los componentes interactivos (`"use client"`) están claramente separados de los Server Componentes.
+- **Separación Client/Server**: Los componentes interactivos (`"use client"`) están claramente separados de los Server Components.
 
 ### Testing
 
-**6 test unitarios** de la Server Action `createAdAction`con Vitest, cubriendo: creación válida con redirect, título corto, descripción corta, precio vacío, usuario no autenticado y creación sin campos opcionales.
+**6 test unitarios** de la Server Action `createAdAction` con Vitest, cubriendo: creación válida con redirect, título corto, descripción corta, precio vacío, usuario no autenticado y creación sin campos opcionales.
 
 ### Reglas de Negocio
 
-**Email único**: No se pueden registrar dos usuarios con el mismo email.
-**Contraseñas hasheadas**: Las contraseñas se almacenan con bcrypt, nunca en texto plano.
-**Mensajes genéricos de error**: En el login, nunca se indica si falló el email o la contraseña.
-**Solo usuarios autenticados crean anuncios**: Protección tanto en middleware como en la Server Action.
+- **Email único**: No se pueden registrar dos usuarios con el mismo email.
+- **Contraseñas hasheadas**: Las contraseñas se almacenan con bcrypt, nunca en texto plano.
+- **Mensajes genéricos de error**: En el login, nunca se indica si falló el email o la contraseña.
+- **Solo usuarios autenticados crean anuncios**: Protección tanto en middleware como en la Server Action.
 
 ## 🚀 Instalación y Puesta en marcha
 
 ### Requisitos previos
 
-**Node.js** v22+
-**Docker Desktop** (para PostgreSQL)
-**pnpm**:
+- **Node.js** v22+
+- **Docker Desktop** (para PostgreSQL)
+- **pnpm** (gestor de paquetes)
 
 ### 1. Clonar el repositorio
 
@@ -84,7 +99,7 @@ pnpm install
 
 ### 3. Configurar variables de entorno
 
-Crea un archivo `.env`en la raíz del proyecto:
+Crea un archivo `.env` en la raíz del proyecto:
 
 ````
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/marketplace?schema=public"
@@ -106,7 +121,7 @@ Esto iniciará un contenedor PostgreSQL en segundo plano.
 ````bash
 pnpm prisma generate
 pnpm prisma db push
-pnpm prisma/seed.mjs
+node prisma/seed.mjs
 ````
 
 Esto genera el cliente de Prisma, crea las tablas y las llena con datos de ejemplo.
@@ -117,13 +132,15 @@ Esto genera el cliente de Prisma, crea las tablas y las llena con datos de ejemp
 pnpm dev
 ````
 
-La aplicación estará disponible en `http://localhost:3000`
+La aplicación estará disponible en `http://localhost:3000`.
 
 ### 7. Ejecutar los tests
 
 ````bash
 pnpm test
 ````
+
+---
 
 ## 📄 Páginas y Rutas
 
@@ -141,6 +158,8 @@ pnpm test
 | `sara@example.com` | `1234` |
 | `kratos@example.com` | `1234` |
 
+---
+
 ## 🛠️ Scripts Disponibles
 
 | Script | Descripción |
@@ -150,6 +169,8 @@ pnpm test
 | `pnpm start` | Arranca el servidor en modo producción |
 | `pnpm lint` | Ejecuta ESLint para verificar la calidad del código |
 | `pnpm test` | Ejecuta los tests unitarios con Vitest |
+
+---
 
 ## 🔧 Tecnologías Utilizadas
 
@@ -179,7 +200,7 @@ Si quieres mejorar el proyecto:
 
 ## 📄 Licencia
 
-Este proyecto se entrega con **Licencia MIT**.
+Este proyecto se entrega con [**Licencia MIT**](https://github.com/Aratea10/nextjs-marketplace/blob/main/LICENSE).
 
 ---
 
